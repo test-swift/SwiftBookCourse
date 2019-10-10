@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="T_Converter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sun" translatesAutoresizingMaskIntoConstraints="NO" id="eSx-dh-ZSP">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="T-Converter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="d18-ya-9IY">
+                                <rect key="frame" x="86" y="27.999999999999996" width="242" height="44.666666666666657"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="242" id="h8J-V1-ZGs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="35"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0ºC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jET-qe-SvF">
+                                <rect key="frame" x="165.66666666666666" y="222.66666666666666" width="83" height="59.999999999999972"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="WmG-hm-Mjw"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="83" id="Zwx-kh-wFL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0ºF" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OOp-Vu-yNR">
+                                <rect key="frame" x="165.66666666666666" y="352.66666666666669" width="83" height="60"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="7Rw-YQ-J21">
+                                <rect key="frame" x="58" y="302.66666666666669" width="298" height="31"/>
+                                <connections>
+                                    <action selector="getSliderNewValue:" destination="BYZ-38-t0r" eventType="valueChanged" id="38n-BX-MdR"/>
+                                </connections>
+                            </slider>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7Rw-YQ-J21" secondAttribute="trailing" constant="60" id="1oP-gl-cU4"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eSx-dh-ZSP" secondAttribute="trailing" id="1q1-re-aD6"/>
+                            <constraint firstItem="7Rw-YQ-J21" firstAttribute="top" secondItem="jET-qe-SvF" secondAttribute="bottom" constant="20" id="7ZN-io-mnT"/>
+                            <constraint firstItem="jET-qe-SvF" firstAttribute="top" secondItem="d18-ya-9IY" secondAttribute="bottom" constant="39.5" id="LFX-Oc-dbl">
+                                <variation key="heightClass=regular-widthClass=compact" constant="150"/>
+                            </constraint>
+                            <constraint firstItem="eSx-dh-ZSP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="QbN-kl-GvT"/>
+                            <constraint firstItem="jET-qe-SvF" firstAttribute="centerX" secondItem="eSx-dh-ZSP" secondAttribute="centerX" id="TvU-NA-DPN"/>
+                            <constraint firstItem="eSx-dh-ZSP" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="fUx-zA-H2X"/>
+                            <constraint firstItem="eSx-dh-ZSP" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="gBH-qw-ZwQ"/>
+                            <constraint firstItem="d18-ya-9IY" firstAttribute="centerX" secondItem="eSx-dh-ZSP" secondAttribute="centerX" id="guQ-m5-eYC"/>
+                            <constraint firstItem="7Rw-YQ-J21" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="60" id="hap-Mc-sRb"/>
+                            <constraint firstItem="OOp-Vu-yNR" firstAttribute="centerX" secondItem="eSx-dh-ZSP" secondAttribute="centerX" id="lJK-Hc-9V3"/>
+                            <constraint firstItem="OOp-Vu-yNR" firstAttribute="top" secondItem="7Rw-YQ-J21" secondAttribute="bottom" constant="20" id="nVN-ed-hnI"/>
+                            <constraint firstItem="OOp-Vu-yNR" firstAttribute="width" secondItem="jET-qe-SvF" secondAttribute="width" id="oEN-w5-obn"/>
+                            <constraint firstItem="d18-ya-9IY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="28" id="r8i-tQ-m35"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="celsiusLabel" destination="jET-qe-SvF" id="KJM-rj-CGK"/>
+                        <outlet property="farenheitLabel" destination="OOp-Vu-yNR" id="DpV-0S-pli"/>
+                        <outlet property="slider" destination="7Rw-YQ-J21" id="0XS-9q-gE4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138.0809595202399" y="128.80000000000001"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="sun" width="375" height="667"/>
+    </resources>
+</document>
