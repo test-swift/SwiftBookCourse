@@ -9,12 +9,71 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var slider: UISlider!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var textField: UITextField!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        label.isHidden = true
+        label.font = label.font.withSize(25)
+        label.textAlignment = .center
+        label.numberOfLines = 2
+        
+        segmentedControl.insertSegment(withTitle: "Third", at: 2 , animated: true)
+        
+        slider.maximumValue = 1
+        slider.minimumValue = 0
+        slider.value = 1
+        slider.minimumTrackTintColor = .green
+        slider.maximumTrackTintColor = .red
+        slider.thumbTintColor = .blue
+        
+        textField.placeholder = "Enter your name"
+        
     }
 
-
+    @IBAction func changeSlider(_ sender: UISlider) {
+        label.isHidden = false
+        label.text = String(sender.value)
+        self.view.backgroundColor = self.view.backgroundColor?.withAlphaComponent(CGFloat(sender.value))
+    }
+    
+    @IBAction func choseSegment(_ sender: UISegmentedControl) {
+        label.isHidden = false
+        switch sender.selectedSegmentIndex {
+        case 0:
+            label.text = "First segment is selected"
+            label.textColor = .cyan
+        case 1:
+            label.text = "Second segment is selected"
+            label.textColor = .green
+        case 2:
+            label.text = "Third segment is selected"
+            label.textColor = .magenta
+        default:
+            return
+        }
+    }
+    
+    @IBAction func donePressed(_ sender: UIButton){
+        
+        guard textField.text?.isEmpty == false else { return }
+        
+        if let _  = Double(textField.text!) {
+            let alert = UIAlertController(title: "Wrong format", message: "Enter your name", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            alert.addAction(action)
+            present(alert, animated: true, completion: nil)
+        } else {
+            label.isHidden = false
+            label.text = textField.text
+        }
+        textField.text = ""
+    }
 }
 
