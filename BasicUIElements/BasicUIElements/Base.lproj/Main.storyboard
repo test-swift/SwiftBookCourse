@@ -69,14 +69,14 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="BasicUIElements" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="377" height="900"/>
+                        <rect key="frame" x="0.0" y="0.0" width="377" height="750"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rzH-PE-uNw">
-                                <rect key="frame" x="0.0" y="0.0" width="377" height="900"/>
+                                <rect key="frame" x="0.0" y="0.0" width="377" height="750"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QfX-9u-th4" userLabel="Container">
-                                        <rect key="frame" x="0.0" y="0.0" width="377" height="900"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="377" height="750"/>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="jp5-1l-hWK">
                                                 <rect key="frame" x="70" y="20" width="237" height="32"/>
@@ -138,20 +138,40 @@
                                                     <action selector="choseDate:" destination="BYZ-38-t0r" eventType="valueChanged" id="yBW-Je-zW3"/>
                                                 </connections>
                                             </datePicker>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="HdG-W7-tuc">
+                                                <rect key="frame" x="40" y="644" width="297" height="31"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uud-D5-aov">
+                                                        <rect key="frame" x="0.0" y="0.0" width="245" height="31"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VKY-BL-BXD">
+                                                        <rect key="frame" x="248" y="0.0" width="51" height="31"/>
+                                                        <connections>
+                                                            <action selector="switchView:" destination="BYZ-38-t0r" eventType="valueChanged" id="Pko-vc-8um"/>
+                                                        </connections>
+                                                    </switch>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="Pxr-45-xtr" firstAttribute="leading" secondItem="QfX-9u-th4" secondAttribute="leading" id="0kQ-nU-lMb"/>
+                                            <constraint firstAttribute="bottom" secondItem="HdG-W7-tuc" secondAttribute="bottom" constant="75" id="1br-QP-Qnx"/>
                                             <constraint firstItem="jp5-1l-hWK" firstAttribute="top" secondItem="QfX-9u-th4" secondAttribute="top" constant="20" id="8kS-qf-ze9"/>
                                             <constraint firstItem="FOz-ur-gjx" firstAttribute="leading" secondItem="QfX-9u-th4" secondAttribute="leading" constant="50" id="IAc-91-5Mb"/>
                                             <constraint firstItem="jp5-1l-hWK" firstAttribute="centerX" secondItem="AVN-lG-pes" secondAttribute="centerX" id="Kgm-0n-La5"/>
+                                            <constraint firstItem="HdG-W7-tuc" firstAttribute="leading" secondItem="QfX-9u-th4" secondAttribute="leading" constant="40" id="RSo-7z-Poc"/>
                                             <constraint firstItem="FOz-ur-gjx" firstAttribute="top" secondItem="AVN-lG-pes" secondAttribute="bottom" constant="40" id="T63-FI-Kbr"/>
                                             <constraint firstItem="jp5-1l-hWK" firstAttribute="leading" secondItem="QfX-9u-th4" secondAttribute="leading" constant="70" id="WPM-Z5-bPT"/>
                                             <constraint firstItem="Pxr-45-xtr" firstAttribute="top" secondItem="FOz-ur-gjx" secondAttribute="bottom" constant="50.5" id="a6w-GB-3zV"/>
                                             <constraint firstItem="Ri7-jp-enh" firstAttribute="top" secondItem="jp5-1l-hWK" secondAttribute="bottom" constant="40" id="cJT-je-ao6"/>
                                             <constraint firstItem="AVN-lG-pes" firstAttribute="top" secondItem="Ri7-jp-enh" secondAttribute="bottom" constant="40" id="cuA-kR-0zH"/>
+                                            <constraint firstAttribute="trailing" secondItem="HdG-W7-tuc" secondAttribute="trailing" constant="40" id="dNL-tn-DCB"/>
                                             <constraint firstItem="jp5-1l-hWK" firstAttribute="centerX" secondItem="QfX-9u-th4" secondAttribute="centerX" id="jxA-g8-OEC"/>
-                                            <constraint firstAttribute="bottom" secondItem="Pxr-45-xtr" secondAttribute="bottom" constant="316" id="mJa-Ou-81r"/>
+                                            <constraint firstItem="HdG-W7-tuc" firstAttribute="top" secondItem="Pxr-45-xtr" secondAttribute="bottom" constant="60" id="rLf-LE-iGo"/>
                                             <constraint firstAttribute="trailing" secondItem="Pxr-45-xtr" secondAttribute="trailing" id="taw-wb-mo7"/>
                                             <constraint firstItem="AVN-lG-pes" firstAttribute="leading" secondItem="QfX-9u-th4" secondAttribute="leading" constant="60" id="uD7-7K-Rjt"/>
                                             <constraint firstItem="Ri7-jp-enh" firstAttribute="centerX" secondItem="QfX-9u-th4" secondAttribute="centerX" id="xGA-I7-L8x"/>
@@ -181,13 +201,16 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="377" height="900"/>
+                    <size key="freeformSize" width="377" height="750"/>
                     <connections>
                         <outlet property="container" destination="QfX-9u-th4" id="Roz-sc-vOs"/>
                         <outlet property="datePicker" destination="Pxr-45-xtr" id="Ob5-PY-WiE"/>
+                        <outlet property="doneBtn" destination="Z7e-6V-qT9" id="O7d-u6-sWX"/>
                         <outlet property="label" destination="Ri7-jp-enh" id="6D9-6y-mLK"/>
+                        <outlet property="labelForSwitch" destination="uud-D5-aov" id="WTd-hn-zhh"/>
                         <outlet property="segmentedControl" destination="jp5-1l-hWK" id="syY-RK-K69"/>
                         <outlet property="slider" destination="AVN-lG-pes" id="UCs-Tn-pGH"/>
+                        <outlet property="switcher" destination="VKY-BL-BXD" id="OyI-4r-Msy"/>
                         <outlet property="textField" destination="BAv-8c-XAn" id="IEI-8e-GPR"/>
                     </connections>
                 </viewController>
