@@ -14,6 +14,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var container: UIView!
+    @IBOutlet weak var datePicker: UIDatePicker!
     
 
     override func viewDidLoad() {
@@ -35,14 +37,16 @@ class ViewController: UIViewController {
         
         textField.placeholder = "Enter your name"
         
+        datePicker.datePickerMode = .date
+        
     }
 
     @IBAction func changeSlider(_ sender: UISlider) {
         label.isHidden = false
         label.text = String(sender.value)
-        self.view.backgroundColor = self.view.backgroundColor?.withAlphaComponent(CGFloat(sender.value))
+        container.backgroundColor = container.backgroundColor?.withAlphaComponent(CGFloat(sender.value))
     }
-    
+
     @IBAction func choseSegment(_ sender: UISegmentedControl) {
         label.isHidden = false
         switch sender.selectedSegmentIndex {
@@ -59,11 +63,11 @@ class ViewController: UIViewController {
             return
         }
     }
-    
+
     @IBAction func donePressed(_ sender: UIButton){
-        
+
         guard textField.text?.isEmpty == false else { return }
-        
+
         if let _  = Double(textField.text!) {
             let alert = UIAlertController(title: "Wrong format", message: "Enter your name", preferredStyle: .alert)
             let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
@@ -75,5 +79,15 @@ class ViewController: UIViewController {
         }
         textField.text = ""
     }
+    
+    @IBAction func choseDate(_ sender: UIDatePicker) {
+        
+        let dateFormat = DateFormatter()
+        dateFormat.dateStyle = .full
+        
+        label.isHidden = false
+        label.text = dateFormat.string(from: sender.date)
+    }
+    
 }
 
