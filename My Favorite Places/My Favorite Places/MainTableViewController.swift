@@ -87,6 +87,29 @@ extension MainTableViewController: UITableViewDataSource, UITableViewDelegate{
         alertController.addAction(markAsVisitedAction)
         alertController.addAction(closeAction)
         present(alertController, animated: true)
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let deleteAction = UIContextualAction(style: .normal, title: "Delete") { _, _, _ in
+            self.places.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+        deleteAction.backgroundColor = .red
+        
+        let shareAction = UIContextualAction(style: .normal, title: "Share", handler: {_,_,_ in
+            let share = UIActivityViewController(activityItems: ["Visiting this place"], applicationActivities: nil)
+            self.present(share, animated: true)
+        })
+        
+        let swipeActionConfiguration = UISwipeActionsConfiguration(actions: [shareAction, deleteAction])
+        swipeActionConfiguration.performsFirstActionWithFullSwipe = false
+        
+        return swipeActionConfiguration
+        
     }
     
 }
