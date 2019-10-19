@@ -29,6 +29,9 @@ class MainTableViewController: UIViewController {
     Places(name: "Шок", type: "ресторан", location: "Уфа", image: "shok.jpg"),
     Places(name: "Бочка", type: "ресторан", location:  "Уфа", image: "bochka.jpg")]
    
+    @IBAction func cancel(segue: UIStoryboardSegue){
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.hidesBarsOnSwipe = true
     }
