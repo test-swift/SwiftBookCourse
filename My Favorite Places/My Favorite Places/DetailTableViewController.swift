@@ -26,6 +26,8 @@ class DetailTableViewController: UIViewController {
         tableView.tableFooterView = UIView(frame: .zero)
         
         self.navigationItem.title = place?.name
+        tableView.estimatedRowHeight = 30
+        tableView.rowHeight = UITableView.automaticDimension
     }
 }
 

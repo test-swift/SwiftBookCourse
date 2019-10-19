@@ -31,7 +31,6 @@ class MainTableViewController: UIViewController {
    
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.hidesBarsOnSwipe = true
-        
     }
     
     override func viewDidLoad() {
@@ -40,8 +39,8 @@ class MainTableViewController: UIViewController {
         tableView.dataSource = self
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-//        tableView.rowHeight = UITableView.automaticDimension
-//        tableView.estimatedRowHeight = 80
+        tableView.estimatedRowHeight = 87
+        tableView.rowHeight = UITableView.automaticDimension
     }
 }
 
