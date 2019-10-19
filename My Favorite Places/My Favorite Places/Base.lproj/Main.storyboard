@@ -324,7 +324,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <sections>
-                            <tableViewSection headerTitle="Section" id="vRB-jb-Hft">
+                            <tableViewSection headerTitle="" id="vRB-jb-Hft">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="250" id="umI-qC-N1g">
                                         <rect key="frame" x="0.0" y="28" width="375" height="250"/>
@@ -473,14 +473,20 @@
                                                             <state key="normal" title="Yes">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="isVisited:" destination="41S-A7-Al8" eventType="touchUpInside" id="vT7-j6-XjX"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mfa-R8-Kkd">
                                                             <rect key="frame" x="70" y="0.0" width="60" height="30"/>
                                                             <color key="backgroundColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <state key="normal" title="Button">
+                                                            <state key="normal" title="No">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="isVisited:" destination="41S-A7-Al8" eventType="touchUpInside" id="b6R-mP-Adl"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <constraints>
@@ -511,10 +517,23 @@
                     <navigationItem key="navigationItem" id="UeP-6H-7n8">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="V7b-qh-eQa">
                             <connections>
-                                <segue destination="IcJ-Af-oVo" kind="unwind" unwindAction="cancelWithSegue:" id="RLS-Hr-82n"/>
+                                <segue destination="IcJ-Af-oVo" kind="unwind" identifier="unwindSequeFromNewPlace" unwindAction="cancelWithSegue:" id="RLS-Hr-82n"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="G1F-us-aWf">
+                            <connections>
+                                <action selector="saveBtnPressed:" destination="41S-A7-Al8" id="nyc-Ge-Snv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="imageView" destination="8h4-uH-Y6b" id="Yhn-fg-hVd"/>
+                        <outlet property="locationTextField" destination="t56-Eb-mo4" id="JOh-C1-A77"/>
+                        <outlet property="nameTextField" destination="9QI-qZ-E16" id="U6F-lD-vwd"/>
+                        <outlet property="noBtn" destination="mfa-R8-Kkd" id="iNX-f7-MTm"/>
+                        <outlet property="typeTextField" destination="dcY-e0-Jg7" id="G1f-rQ-MP3"/>
+                        <outlet property="yesBtn" destination="Jr3-R5-Thd" id="Efq-Sa-rR7"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="12k-df-4Ym" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="IcJ-Af-oVo" userLabel="Exit" sceneMemberID="exit"/>

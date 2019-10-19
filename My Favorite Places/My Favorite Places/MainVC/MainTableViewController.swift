@@ -30,6 +30,9 @@ class MainTableViewController: UIViewController {
     Places(name: "Бочка", type: "ресторан", location:  "Уфа", image: "bochka.jpg")]
    
     @IBAction func cancel(segue: UIStoryboardSegue){
+        if segue.identifier == "unwindSequeFromNewPlace"{
+            print("save")
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
