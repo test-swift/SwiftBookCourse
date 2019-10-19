@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Page View Controller-->
+        <scene sceneID="OVC-jr-V0t">
+            <objects>
+                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="jhw-Sc-5OO" customClass="PageViewController" customModule="UIPageViewController" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dp2-hB-0GD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="770" y="-76"/>
+        </scene>
+        <!--First View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="FirstViewController" id="BYZ-38-t0r" customClass="FirstViewController" customModule="UIPageViewController" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WELCOME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVQ-vY-W3x">
+                                <rect key="frame" x="75" y="310" width="225" height="47"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="225" id="R9V-Q0-g5i"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="37"/>
+                                <color key="textColor" systemColor="systemPinkColor" red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="fVQ-vY-W3x" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="4de-SC-CET"/>
+                            <constraint firstItem="fVQ-vY-W3x" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="xtU-5u-3ym"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-820" y="-76.011994002998506"/>
+        </scene>
+        <!--Content View Controller-->
+        <scene sceneID="rGW-4I-SBF">
+            <objects>
+                <viewController storyboardIdentifier="ContentViewController" id="Jnp-Au-EUm" customClass="ContentViewController" customModule="UIPageViewController" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Joc-r9-8Gf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loren ipsum" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JEa-uo-lix">
+                                <rect key="frame" x="105" y="162" width="165.5" height="47"/>
+                                <fontDescription key="fontDescription" name="SnellRoundhand" family="Snell Roundhand" pointSize="37"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😋" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IB4-9b-Ydg">
+                                <rect key="frame" x="144.5" y="286" width="86" height="95"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="86" id="uuI-oF-mlg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="80"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="uAN-r7-WDb">
+                                <rect key="frame" x="134.5" y="610" width="106" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="106" id="G3v-6Y-kQA"/>
+                                </constraints>
+                            </pageControl>
+                        </subviews>
+                        <color key="backgroundColor" red="0.45085787770000002" green="0.98829740290000001" blue="0.83763033149999999" alpha="0.65889875856164382" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="JEa-uo-lix" firstAttribute="centerX" secondItem="bCF-xX-cwD" secondAttribute="centerX" id="B8L-gB-oBU"/>
+                            <constraint firstItem="IB4-9b-Ydg" firstAttribute="centerY" secondItem="bCF-xX-cwD" secondAttribute="centerY" id="P8V-Sp-F1M"/>
+                            <constraint firstItem="bCF-xX-cwD" firstAttribute="bottom" secondItem="uAN-r7-WDb" secondAttribute="bottom" constant="20" id="fvl-yr-BPe"/>
+                            <constraint firstItem="uAN-r7-WDb" firstAttribute="centerX" secondItem="bCF-xX-cwD" secondAttribute="centerX" id="kab-HX-wWf"/>
+                            <constraint firstItem="IB4-9b-Ydg" firstAttribute="top" secondItem="JEa-uo-lix" secondAttribute="bottom" constant="77" id="qbA-LR-iJC"/>
+                            <constraint firstItem="IB4-9b-Ydg" firstAttribute="centerX" secondItem="bCF-xX-cwD" secondAttribute="centerX" id="rRB-mk-4yf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bCF-xX-cwD"/>
+                    </view>
+                    <connections>
+                        <outlet property="displayLabel" destination="JEa-uo-lix" id="lBl-Km-2pg"/>
+                        <outlet property="emojiLabel" destination="IB4-9b-Ydg" id="BCL-qs-4OO"/>
+                        <outlet property="label" destination="JEa-uo-lix" id="LWq-1I-aL8"/>
+                        <outlet property="pageCntrl" destination="uAN-r7-WDb" id="sl2-Av-TJx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JXj-Bo-wev" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-50.399999999999999" y="-76.011994002998506"/>
+        </scene>
+    </scenes>
+</document>
