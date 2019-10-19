@@ -33,6 +33,9 @@ class MainTableViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
+//        tableView.rowHeight = UITableView.automaticDimension
+//        tableView.estimatedRowHeight = 80
     }
 }
 
@@ -60,34 +63,35 @@ extension MainTableViewController: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // first alert controller with action sheet style
-        let alertController = UIAlertController(title: "", message: "Выберите действие", preferredStyle: .actionSheet)
-        
-        // alert action call
-        let callAction = UIAlertAction(title: "Позвонить", style: .default, handler: { _ in
-            let action = UIAlertAction(title: "ОК", style: .default, handler: nil)
-            let actionController = UIAlertController(title: "Вызов не может быть совершен", message: nil, preferredStyle: .alert)
-            actionController.addAction(action)
-            self.present(actionController, animated: true)
-        })
-        
-        // alert action mark as visited
-        let title = places[indexPath.row].isVisited ? "I have never been here" : "Mark as visited"
-        let markAsVisitedAction = UIAlertAction(title: title, style: .default, handler: { _ in
-            let cell = tableView.cellForRow(at: indexPath)
-            
-            self.places[indexPath.row].isVisited = !self.places[indexPath.row].isVisited
-            cell?.accessoryType = self.places[indexPath.row].isVisited ? .checkmark : .none
-        })
-        
-        // alert action close
-        let closeAction = UIAlertAction(title: "Закрить", style: .destructive, handler: nil)
-        
-        // present alertController
-        alertController.addAction(callAction)
-        alertController.addAction(markAsVisitedAction)
-        alertController.addAction(closeAction)
-        present(alertController, animated: true)
-        
+//        let alertController = UIAlertController(title: "", message: "Выберите действие", preferredStyle: .actionSheet)
+//        
+//        // alert action call
+//        let callAction = UIAlertAction(title: "Позвонить", style: .default, handler: { _ in
+//            let action = UIAlertAction(title: "ОК", style: .default, handler: nil)
+//            let actionController = UIAlertController(title: "Вызов не может быть совершен", message: nil, preferredStyle: .alert)
+//            actionController.addAction(action)
+//            self.present(actionController, animated: true)
+//        })
+//        
+//        // alert action mark as visited
+//        let title = places[indexPath.row].isVisited ? "I have never been here" : "Mark as visited"
+//        let markAsVisitedAction = UIAlertAction(title: title, style: .default, handler: { _ in
+//            let cell = tableView.cellForRow(at: indexPath)
+//            
+//            self.places[indexPath.row].isVisited = !self.places[indexPath.row].isVisited
+//            cell?.accessoryType = self.places[indexPath.row].isVisited ? .checkmark : .none
+//        })
+//        
+//        // alert action close
+//        let closeAction = UIAlertAction(title: "Закрить", style: .destructive, handler: nil)
+//        
+//        // present alertController
+//        alertController.addAction(callAction)
+//        alertController.addAction(markAsVisitedAction)
+//        alertController.addAction(closeAction)
+//        present(alertController, animated: true)
+//        
+        performSegue(withIdentifier: "toDetailVC", sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -110,6 +114,15 @@ extension MainTableViewController: UITableViewDataSource, UITableViewDelegate{
         
         return swipeActionConfiguration
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toDetailVC" {
+            if  let index = tableView.indexPathForSelectedRow{
+                let destinationVC = segue.destination as? DetailTableViewController
+                destinationVC?.place = self.places[index.row]
+            }
+        }
     }
     
 }
