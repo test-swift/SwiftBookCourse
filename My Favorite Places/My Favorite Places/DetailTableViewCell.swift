@@ -15,7 +15,7 @@ class DetailTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-//        self.he
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

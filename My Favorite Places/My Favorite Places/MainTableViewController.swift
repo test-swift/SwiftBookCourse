@@ -28,12 +28,18 @@ class MainTableViewController: UIViewController {
     Places(name: "Love&Life", type: "ресторан", location: "Уфа", image: "love.jpg"),
     Places(name: "Шок", type: "ресторан", location: "Уфа", image: "shok.jpg"),
     Places(name: "Бочка", type: "ресторан", location:  "Уфа", image: "bochka.jpg")]
+   
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.hidesBarsOnSwipe = true
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 //        tableView.rowHeight = UITableView.automaticDimension
 //        tableView.estimatedRowHeight = 80
     }

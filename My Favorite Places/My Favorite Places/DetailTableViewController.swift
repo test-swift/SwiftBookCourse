@@ -11,14 +11,25 @@ import UIKit
 class DetailTableViewController: UIViewController {
 
     @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var tableView: UITableView!
     
     var place: Places?
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.hidesBarsOnSwipe = false
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         image.image = UIImage(named: place!.image)
+        tableView.tableFooterView = UIView(frame: .zero)
+        
+        self.navigationItem.title = place?.name
     }
 }
+
+
     // MARK: - Table view data source
 
 extension DetailTableViewController: UITableViewDelegate, UITableViewDataSource{
@@ -40,7 +51,7 @@ extension DetailTableViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+
         return 4
     }
 
