@@ -12,6 +12,13 @@ class DetailTableViewController: UIViewController {
 
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var rateBtn: UIButton!
+    
+    @IBAction func unwindSegue(segue: UIStoryboardSegue){
+        guard let source = segue.source as? RateViewController else {return}
+        guard let rating = source.placeRating else {return}
+        rateBtn.setImage(UIImage(named: rating), for: .normal)
+    }
     
     var place: Places?
     
@@ -27,6 +34,10 @@ class DetailTableViewController: UIViewController {
         
         self.navigationItem.title = place?.name
         tableView.estimatedRowHeight = 30
+        
+        rateBtn.layer.cornerRadius = 5
+        rateBtn.layer.borderWidth = 1
+        rateBtn.layer.borderColor = UIColor.white.cgColor
         tableView.rowHeight = UITableView.automaticDimension
     }
 }
@@ -45,7 +56,8 @@ extension DetailTableViewController: UITableViewDelegate, UITableViewDataSource{
         case 2:
             cell.keyLabel.text = "Type"
         case 3:
-            cell.keyLabel.text = place!.isVisited ? "I HAVE BEEN HERE" : "I HAVE NEVER BEEN HERE"
+            cell.keyLabel.text = "Visited"
+            cell.valueLabel.text = place!.isVisited ? "Yes" : "No"
         default:
             break
         }
@@ -56,5 +68,5 @@ extension DetailTableViewController: UITableViewDelegate, UITableViewDataSource{
 
         return 4
     }
-
+    
 }
