@@ -179,6 +179,17 @@
                                     <segue destination="khJ-nz-Mlr" kind="showDetail" id="gPl-qX-bZZ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SFq-V1-pIr">
+                                <rect key="frame" x="313" y="111" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="SFq-V1-pIr" secondAttribute="height" multiplier="1:1" id="swP-Me-8fc"/>
+                                    <constraint firstAttribute="width" constant="50" id="us3-GP-hdc"/>
+                                </constraints>
+                                <state key="normal" image="map"/>
+                                <connections>
+                                    <segue destination="bxv-bp-r4r" kind="show" identifier="toMapVC" id="xxl-MC-Qbw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -186,8 +197,10 @@
                             <constraint firstItem="IJT-ni-Ixi" firstAttribute="top" secondItem="KS7-Hq-QQb" secondAttribute="top" constant="12" id="AcX-8Y-9gG"/>
                             <constraint firstItem="boV-Uy-P35" firstAttribute="top" secondItem="KS7-Hq-QQb" secondAttribute="top" id="DeV-to-EL3"/>
                             <constraint firstItem="boV-Uy-P35" firstAttribute="leading" secondItem="6id-Ba-6uY" secondAttribute="leading" id="P2E-wY-fpR"/>
+                            <constraint firstItem="KS7-Hq-QQb" firstAttribute="trailing" secondItem="SFq-V1-pIr" secondAttribute="trailing" constant="12" id="Qcu-gq-5O8"/>
                             <constraint firstItem="KS7-Hq-QQb" firstAttribute="trailing" secondItem="IJT-ni-Ixi" secondAttribute="trailing" constant="16" id="SrL-WA-ckH"/>
                             <constraint firstItem="KS7-Hq-QQb" firstAttribute="trailing" secondItem="boV-Uy-P35" secondAttribute="trailing" id="kBh-BW-gMc"/>
+                            <constraint firstItem="SFq-V1-pIr" firstAttribute="top" secondItem="IJT-ni-Ixi" secondAttribute="bottom" constant="5" id="mSu-za-B8s"/>
                             <constraint firstItem="boV-Uy-P35" firstAttribute="top" secondItem="KS7-Hq-QQb" secondAttribute="top" id="pI7-hf-DWi"/>
                             <constraint firstItem="boV-Uy-P35" firstAttribute="leading" secondItem="KS7-Hq-QQb" secondAttribute="leading" id="uQu-R5-EXm"/>
                             <constraint firstItem="KS7-Hq-QQb" firstAttribute="bottom" secondItem="boV-Uy-P35" secondAttribute="bottom" id="umk-9D-MV2"/>
@@ -197,6 +210,7 @@
                     <navigationItem key="navigationItem" id="17s-0U-u84"/>
                     <connections>
                         <outlet property="image" destination="MrD-T8-RKC" id="85t-9N-9j7"/>
+                        <outlet property="mapBtn" destination="SFq-V1-pIr" id="yDv-Ks-6ej"/>
                         <outlet property="rateBtn" destination="IJT-ni-Ixi" id="bYe-SP-MAn"/>
                         <outlet property="tableView" destination="boV-Uy-P35" id="jWW-0F-1up"/>
                     </connections>
@@ -295,6 +309,36 @@
             </objects>
             <point key="canvasLocation" x="2679" y="104"/>
         </scene>
+        <!--Map View Controller-->
+        <scene sceneID="UqM-yO-6TI">
+            <objects>
+                <viewController id="bxv-bp-r4r" customClass="MapViewController" customModule="My_Favorite_Places" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7fd-pA-4ad">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="5wX-3f-oU5">
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="5wX-3f-oU5" firstAttribute="top" secondItem="DO8-SY-pGj" secondAttribute="top" id="6GF-3W-SYi"/>
+                            <constraint firstItem="DO8-SY-pGj" firstAttribute="trailing" secondItem="5wX-3f-oU5" secondAttribute="trailing" id="M4n-PA-lV5"/>
+                            <constraint firstItem="5wX-3f-oU5" firstAttribute="leading" secondItem="DO8-SY-pGj" secondAttribute="leading" id="cUG-7c-L3L"/>
+                            <constraint firstItem="DO8-SY-pGj" firstAttribute="bottom" secondItem="5wX-3f-oU5" secondAttribute="bottom" id="dmG-2n-UoC"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="DO8-SY-pGj"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="u5T-Qf-ahd"/>
+                    <connections>
+                        <outlet property="mapView" destination="5wX-3f-oU5" id="KMO-BJ-Idn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="48h-ln-qXN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="903" y="-606"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="9LT-q3-9JA">
             <objects>
@@ -319,6 +363,7 @@
         <image name="brilliant" width="85" height="85"/>
         <image name="close" width="50" height="50"/>
         <image name="good" width="85" height="85"/>
+        <image name="map" width="50" height="50"/>
         <image name="rateBackground" width="200" height="286"/>
     </resources>
 </document>

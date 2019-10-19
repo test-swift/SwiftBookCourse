@@ -9,10 +9,11 @@
 import UIKit
 
 class DetailTableViewController: UIViewController {
-
+    
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var rateBtn: UIButton!
+    @IBOutlet weak var mapBtn: UIButton!
     
     @IBAction func unwindSegue(segue: UIStoryboardSegue){
         guard let source = segue.source as? RateViewController else {return}
@@ -34,16 +35,20 @@ class DetailTableViewController: UIViewController {
         
         self.navigationItem.title = place?.name
         tableView.estimatedRowHeight = 30
-        
-        rateBtn.layer.cornerRadius = 5
-        rateBtn.layer.borderWidth = 1
-        rateBtn.layer.borderColor = UIColor.white.cgColor
         tableView.rowHeight = UITableView.automaticDimension
+        
+        let buttons = [mapBtn, rateBtn]
+        for button in buttons{
+            guard let btn = button else {return}
+            btn.layer.cornerRadius = 5
+            btn.layer.borderWidth = 1
+            btn.layer.borderColor = UIColor.white.cgColor
+        }
     }
 }
 
 
-    // MARK: - Table view data source
+// MARK: - Table view data source
 
 extension DetailTableViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -64,9 +69,15 @@ extension DetailTableViewController: UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     
-     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toMapVC" {
+            let dvc = segue.destination as? MapViewController
+            dvc?.place = self.place
+        }
     }
     
 }
