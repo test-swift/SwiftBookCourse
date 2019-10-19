@@ -17,6 +17,9 @@ class MainTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        img.clipsToBounds = true
+        img.layer.cornerRadius = img.frame.height/2
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

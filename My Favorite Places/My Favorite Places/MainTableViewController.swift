@@ -53,8 +53,40 @@ extension MainTableViewController: UITableViewDataSource, UITableViewDelegate{
         cell.typeLabel.text = places[indexPath.row].type
         cell.locationLabel.text = places[indexPath.row].location
         cell.img.image = UIImage(named: places[indexPath.row].image)
+        cell.accessoryType = places[indexPath.row].isVisited ? .checkmark : .none
+        
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // first alert controller with action sheet style
+        let alertController = UIAlertController(title: "", message: "Выберите действие", preferredStyle: .actionSheet)
+        
+        // alert action call
+        let callAction = UIAlertAction(title: "Позвонить", style: .default, handler: { _ in
+            let action = UIAlertAction(title: "ОК", style: .default, handler: nil)
+            let actionController = UIAlertController(title: "Вызов не может быть совершен", message: nil, preferredStyle: .alert)
+            actionController.addAction(action)
+            self.present(actionController, animated: true)
+        })
+        
+        // alert action mark as visited
+        let title = places[indexPath.row].isVisited ? "I have never been here" : "Mark as visited"
+        let markAsVisitedAction = UIAlertAction(title: title, style: .default, handler: { _ in
+            let cell = tableView.cellForRow(at: indexPath)
+            
+            self.places[indexPath.row].isVisited = !self.places[indexPath.row].isVisited
+            cell?.accessoryType = self.places[indexPath.row].isVisited ? .checkmark : .none
+        })
+        
+        // alert action close
+        let closeAction = UIAlertAction(title: "Закрить", style: .destructive, handler: nil)
+        
+        // present alertController
+        alertController.addAction(callAction)
+        alertController.addAction(markAsVisitedAction)
+        alertController.addAction(closeAction)
+        present(alertController, animated: true)
+    }
     
 }
