@@ -20,8 +20,9 @@ class MapViewController: UIViewController, MKMapViewDelegate{
         mapView.delegate = self
         
         guard let place = place else {return}
+        
         let decoder = CLGeocoder()
-        decoder.geocodeAddressString(place.location) { (placemarks, error) in
+        decoder.geocodeAddressString(place.location!) { (placemarks, error) in
             guard error == nil else {return}
             guard let placemarks = placemarks else {return}
             guard let placemark = placemarks.first else {return}
@@ -51,7 +52,7 @@ class MapViewController: UIViewController, MKMapViewDelegate{
         }
         
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-        imageView.image = UIImage(named: place!.image)
+        imageView.image = UIImage(data: place!.img! as Data)
         
         annotationView?.rightCalloutAccessoryView = imageView
         annotationView?.pinTintColor = .green

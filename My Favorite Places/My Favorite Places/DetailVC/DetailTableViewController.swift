@@ -30,7 +30,7 @@ class DetailTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        image.image = UIImage(named: place!.image)
+        image.image = UIImage(data: place!.img!)
         tableView.tableFooterView = UIView(frame: .zero)
         
         self.navigationItem.title = place?.name

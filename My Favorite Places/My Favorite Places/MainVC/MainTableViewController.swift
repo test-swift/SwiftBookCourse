@@ -7,28 +7,30 @@
 //
 
 import UIKit
+import CoreData
 
-class MainTableViewController: UIViewController {
-
+class MainTableViewController: UIViewController, NSFetchedResultsControllerDelegate {
+    
+    var fetchResultsController: NSFetchedResultsController<Places>!
     @IBOutlet weak var tableView: UITableView!
     
-    var places: [Places] = [
-    Places(name: "Ogonёk Grill&Bar", type: "ресторан", location: "Уфа, бульвар Хадии Давлетшиной 21, вход со стороны улицы", image: "ogonek.jpg"),
-    Places(name: "Елу", type: "ресторан", location: "Уфа", image: "elu.jpg"),
-    Places(name: "Bonsai", type: "ресторан", location: "Уфа", image: "bonsai.jpg"),
-    Places(name: "Дастархан", type: "ресторан", location: "Уфа", image: "dastarhan.jpg"),
-    Places(name: "Индокитай", type: "ресторан", location: "Уфа", image: "indokitay.jpg"),
-    Places(name: "X.O", type: "ресторан-клуб", location: "Уфа", image: "x.o.jpg"),
-    Places(name: "Балкан Гриль", type: "ресторан", location: "Уфа", image: "balkan.jpg"),
-    Places(name: "Respublica", type: "ресторан", location: "Уфа", image: "respublika.jpg"),
-    Places(name: "Speak Easy", type: "ресторанный комплекс", location: "Уфа", image: "speakeasy.jpg"),
-    Places(name: "Morris Pub", type: "ресторан", location: "Уфа", image: "morris.jpg"),
-    Places(name: "Вкусные истории", type: "ресторан", location: "Уфа", image: "istorii.jpg"),
-    Places(name: "Классик", type: "ресторан", location: "Уфа", image: "klassik.jpg"),
-    Places(name: "Love&Life", type: "ресторан", location: "Уфа", image: "love.jpg"),
-    Places(name: "Шок", type: "ресторан", location: "Уфа", image: "shok.jpg"),
-    Places(name: "Бочка", type: "ресторан", location:  "Уфа", image: "bochka.jpg")]
-   
+    var places: [Places] = []
+    //    Places(name: "Ogonёk Grill&Bar", type: "ресторан", location: "Уфа, бульвар Хадии Давлетшиной 21, вход со стороны улицы", image: "ogonek.jpg"),
+    //    Places(name: "Елу", type: "ресторан", location: "Уфа", image: "elu.jpg"),
+    //    Places(name: "Bonsai", type: "ресторан", location: "Уфа", image: "bonsai.jpg"),
+    //    Places(name: "Дастархан", type: "ресторан", location: "Уфа", image: "dastarhan.jpg"),
+    //    Places(name: "Индокитай", type: "ресторан", location: "Уфа", image: "indokitay.jpg"),
+    //    Places(name: "X.O", type: "ресторан-клуб", location: "Уфа", image: "x.o.jpg"),
+    //    Places(name: "Балкан Гриль", type: "ресторан", location: "Уфа", image: "balkan.jpg"),
+    //    Places(name: "Respublica", type: "ресторан", location: "Уфа", image: "respublika.jpg"),
+    //    Places(name: "Speak Easy", type: "ресторанный комплекс", location: "Уфа", image: "speakeasy.jpg"),
+    //    Places(name: "Morris Pub", type: "ресторан", location: "Уфа", image: "morris.jpg"),
+    //    Places(name: "Вкусные истории", type: "ресторан", location: "Уфа", image: "istorii.jpg"),
+    //    Places(name: "Классик", type: "ресторан", location: "Уфа", image: "klassik.jpg"),
+    //    Places(name: "Love&Life", type: "ресторан", location: "Уфа", image: "love.jpg"),
+    //    Places(name: "Шок", type: "ресторан", location: "Уфа", image: "shok.jpg"),
+    //    Places(name: "Бочка", type: "ресторан", location:  "Уфа", image: "bochka.jpg")]
+    
     @IBAction func cancel(segue: UIStoryboardSegue){
         if segue.identifier == "unwindSequeFromNewPlace"{
             print("save")
@@ -47,6 +49,21 @@ class MainTableViewController: UIViewController {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         tableView.estimatedRowHeight = 87
         tableView.rowHeight = UITableView.automaticDimension
+        
+        let fetchRequest: NSFetchRequest<Places> = Places.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        if let context = (UIApplication.shared.delegate as? AppDelegate)?.coreDataStack.persistentContainer.viewContext{
+            fetchResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+            fetchResultsController.delegate = self
+            do{
+                try fetchResultsController.performFetch()
+                places = fetchResultsController.fetchedObjects!
+            } catch let error as NSError {
+                print(error)
+            }
+        }
     }
 }
 
@@ -66,7 +83,7 @@ extension MainTableViewController: UITableViewDataSource, UITableViewDelegate{
         cell.nameLabel.text = places[indexPath.row].name
         cell.typeLabel.text = places[indexPath.row].type
         cell.locationLabel.text = places[indexPath.row].location
-        cell.img.image = UIImage(named: places[indexPath.row].image)
+        cell.img.image =  UIImage(data: places[indexPath.row].img! as Data)
         cell.accessoryType = places[indexPath.row].isVisited ? .checkmark : .none
         
         return cell
@@ -74,34 +91,34 @@ extension MainTableViewController: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // first alert controller with action sheet style
-//        let alertController = UIAlertController(title: "", message: "Выберите действие", preferredStyle: .actionSheet)
-//        
-//        // alert action call
-//        let callAction = UIAlertAction(title: "Позвонить", style: .default, handler: { _ in
-//            let action = UIAlertAction(title: "ОК", style: .default, handler: nil)
-//            let actionController = UIAlertController(title: "Вызов не может быть совершен", message: nil, preferredStyle: .alert)
-//            actionController.addAction(action)
-//            self.present(actionController, animated: true)
-//        })
-//        
-//        // alert action mark as visited
-//        let title = places[indexPath.row].isVisited ? "I have never been here" : "Mark as visited"
-//        let markAsVisitedAction = UIAlertAction(title: title, style: .default, handler: { _ in
-//            let cell = tableView.cellForRow(at: indexPath)
-//            
-//            self.places[indexPath.row].isVisited = !self.places[indexPath.row].isVisited
-//            cell?.accessoryType = self.places[indexPath.row].isVisited ? .checkmark : .none
-//        })
-//        
-//        // alert action close
-//        let closeAction = UIAlertAction(title: "Закрить", style: .destructive, handler: nil)
-//        
-//        // present alertController
-//        alertController.addAction(callAction)
-//        alertController.addAction(markAsVisitedAction)
-//        alertController.addAction(closeAction)
-//        present(alertController, animated: true)
-//        
+        //        let alertController = UIAlertController(title: "", message: "Выберите действие", preferredStyle: .actionSheet)
+        //
+        //        // alert action call
+        //        let callAction = UIAlertAction(title: "Позвонить", style: .default, handler: { _ in
+        //            let action = UIAlertAction(title: "ОК", style: .default, handler: nil)
+        //            let actionController = UIAlertController(title: "Вызов не может быть совершен", message: nil, preferredStyle: .alert)
+        //            actionController.addAction(action)
+        //            self.present(actionController, animated: true)
+        //        })
+        //
+        //        // alert action mark as visited
+        //        let title = places[indexPath.row].isVisited ? "I have never been here" : "Mark as visited"
+        //        let markAsVisitedAction = UIAlertAction(title: title, style: .default, handler: { _ in
+        //            let cell = tableView.cellForRow(at: indexPath)
+        //
+        //            self.places[indexPath.row].isVisited = !self.places[indexPath.row].isVisited
+        //            cell?.accessoryType = self.places[indexPath.row].isVisited ? .checkmark : .none
+        //        })
+        //
+        //        // alert action close
+        //        let closeAction = UIAlertAction(title: "Закрить", style: .destructive, handler: nil)
+        //
+        //        // present alertController
+        //        alertController.addAction(callAction)
+        //        alertController.addAction(markAsVisitedAction)
+        //        alertController.addAction(closeAction)
+        //        present(alertController, animated: true)
+        //
         performSegue(withIdentifier: "toDetailVC", sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -112,6 +129,16 @@ extension MainTableViewController: UITableViewDataSource, UITableViewDelegate{
         let deleteAction = UIContextualAction(style: .normal, title: "Delete") { _, _, _ in
             self.places.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            if let context = (UIApplication.shared.delegate as? AppDelegate)?.coreDataStack.persistentContainer.viewContext{
+                let objToDelete = self.fetchResultsController.object(at: indexPath)
+                context.delete(objToDelete)
+                do {
+                    try context.save()
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
         }
         deleteAction.backgroundColor = .red
         
@@ -136,4 +163,30 @@ extension MainTableViewController: UITableViewDataSource, UITableViewDelegate{
         }
     }
     
+    
+    
+    //MARK: fETCH DELEGATE
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        print("contriler")
+        guard let index = newIndexPath else {return}
+        switch type {
+        case .delete:
+            tableView.deleteRows(at: [index], with: .fade)
+        case .insert:
+            tableView.insertRows(at: [index], with: .fade)
+        case .update, .move:
+            tableView.reloadRows(at: [index], with: .fade)
+        default:
+            tableView.reloadData()
+        }
+        places = controller.fetchedObjects as! [Places]
+    }
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
 }
