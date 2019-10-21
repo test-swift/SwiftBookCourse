@@ -23,6 +23,15 @@ class MainTableViewController: UIViewController, NSFetchedResultsControllerDeleg
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        let userDefaults = UserDefaults.standard
+        let isWatched =  userDefaults.bool(forKey: "isWatched")
+        guard !isWatched else { return }
+        
+        if let pageVC = storyboard?.instantiateViewController(withIdentifier: "pageViewController") as? PageViewController{
+            present(pageVC, animated: true)
+        }
+    }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.hidesBarsOnSwipe = true
     }
