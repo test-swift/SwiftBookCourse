@@ -12,13 +12,19 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-     lazy var coreDataStack = CoreDataStack()
+    lazy var coreDataStack = CoreDataStack()
+    var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         UINavigationBar.appearance().tintColor = .white
         UINavigationBar.appearance().isTranslucent = false
         UINavigationBar.appearance().barTintColor = .systemGreen
+        
+        let statusBar = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 20))
+        statusBar.backgroundColor = .systemGreen
+
+        self.window?.rootViewController?.view.insertSubview(statusBar, at: 0)
         
         if let barFont = UIFont(name: "AppleSDGothicNeo-Regular", size: 24){
             let attributes: [NSAttributedString.Key: Any] = [

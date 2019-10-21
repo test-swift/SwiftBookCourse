@@ -9,27 +9,13 @@
 import UIKit
 import CoreData
 
-class MainTableViewController: UIViewController, NSFetchedResultsControllerDelegate {
+class MainTableViewController: UIViewController, NSFetchedResultsControllerDelegate, UISearchResultsUpdating{
     
     var fetchResultsController: NSFetchedResultsController<Places>!
     @IBOutlet weak var tableView: UITableView!
-    
+    var searchController: UISearchController!
+    var filteredArray: [Places] = []
     var places: [Places] = []
-    //    Places(name: "Ogonёk Grill&Bar", type: "ресторан", location: "Уфа, бульвар Хадии Давлетшиной 21, вход со стороны улицы", image: "ogonek.jpg"),
-    //    Places(name: "Елу", type: "ресторан", location: "Уфа", image: "elu.jpg"),
-    //    Places(name: "Bonsai", type: "ресторан", location: "Уфа", image: "bonsai.jpg"),
-    //    Places(name: "Дастархан", type: "ресторан", location: "Уфа", image: "dastarhan.jpg"),
-    //    Places(name: "Индокитай", type: "ресторан", location: "Уфа", image: "indokitay.jpg"),
-    //    Places(name: "X.O", type: "ресторан-клуб", location: "Уфа", image: "x.o.jpg"),
-    //    Places(name: "Балкан Гриль", type: "ресторан", location: "Уфа", image: "balkan.jpg"),
-    //    Places(name: "Respublica", type: "ресторан", location: "Уфа", image: "respublika.jpg"),
-    //    Places(name: "Speak Easy", type: "ресторанный комплекс", location: "Уфа", image: "speakeasy.jpg"),
-    //    Places(name: "Morris Pub", type: "ресторан", location: "Уфа", image: "morris.jpg"),
-    //    Places(name: "Вкусные истории", type: "ресторан", location: "Уфа", image: "istorii.jpg"),
-    //    Places(name: "Классик", type: "ресторан", location: "Уфа", image: "klassik.jpg"),
-    //    Places(name: "Love&Life", type: "ресторан", location: "Уфа", image: "love.jpg"),
-    //    Places(name: "Шок", type: "ресторан", location: "Уфа", image: "shok.jpg"),
-    //    Places(name: "Бочка", type: "ресторан", location:  "Уфа", image: "bochka.jpg")]
     
     @IBAction func cancel(segue: UIStoryboardSegue){
         if segue.identifier == "unwindSequeFromNewPlace"{
@@ -45,6 +31,15 @@ class MainTableViewController: UIViewController, NSFetchedResultsControllerDeleg
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+//        searchController.hidesNavigationBarDuringPresentation = false
+        tableView.tableHeaderView = searchController.searchBar
+        searchController.searchBar.sizeToFit()
+        definesPresentationContext = true
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         tableView.estimatedRowHeight = 87
@@ -65,6 +60,27 @@ class MainTableViewController: UIViewController, NSFetchedResultsControllerDeleg
             }
         }
     }
+    
+    func getPlaceToDisplay(indexPath: IndexPath) -> Places{
+        var place:Places
+        if searchController.isActive && searchController.searchBar.text != "" {
+            place = filteredArray[indexPath.row]
+        } else{
+            place = places[indexPath.row]
+        }
+        return place
+    }
+    
+    func getFilteredArray(forText text: String){
+        filteredArray = places.filter({ (place) -> Bool in
+            return(place.name?.lowercased().contains(text.lowercased()))!
+        })
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+            getFilteredArray(forText: searchController.searchBar.text!)
+            tableView.reloadData()
+    }
 }
 
 
@@ -72,19 +88,23 @@ class MainTableViewController: UIViewController, NSFetchedResultsControllerDeleg
 
 //MARK: CONFORM TABLEVIEW DELEGATE
 
-extension MainTableViewController: UITableViewDataSource, UITableViewDelegate{
+extension MainTableViewController: UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchController.isActive && searchController.searchBar.text != ""{
+            return filteredArray.count
+        }
         return places.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let place = getPlaceToDisplay(indexPath: indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: "descriptionCell", for: indexPath) as! MainTableViewCell
-        cell.nameLabel.text = places[indexPath.row].name
-        cell.typeLabel.text = places[indexPath.row].type
-        cell.locationLabel.text = places[indexPath.row].location
-        cell.img.image =  UIImage(data: places[indexPath.row].img! as Data)
-        cell.accessoryType = places[indexPath.row].isVisited ? .checkmark : .none
+        cell.nameLabel.text = place.name
+        cell.typeLabel.text = place.type
+        cell.locationLabel.text = place.location
+        cell.img.image =  UIImage(data: place.img! as Data)
+        cell.accessoryType = place.isVisited ? .checkmark : .none
         
         return cell
     }
@@ -158,7 +178,7 @@ extension MainTableViewController: UITableViewDataSource, UITableViewDelegate{
         if segue.identifier == "toDetailVC" {
             if  let index = tableView.indexPathForSelectedRow{
                 let destinationVC = segue.destination as? DetailTableViewController
-                destinationVC?.place = self.places[index.row]
+                destinationVC?.place = getPlaceToDisplay(indexPath: index)
             }
         }
     }
@@ -188,5 +208,12 @@ extension MainTableViewController: UITableViewDataSource, UITableViewDelegate{
     }
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        navigationController?.hidesBarsOnSwipe = true
+    }
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        navigationController?.hidesBarsOnSwipe = false
     }
 }
