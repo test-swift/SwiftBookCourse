@@ -56,10 +56,13 @@ extension DetailTableViewController: UITableViewDelegate, UITableViewDataSource{
         switch indexPath.row {
         case 0:
             cell.keyLabel.text = "Name"
+            cell.valueLabel.text = place?.name
         case 1:
             cell.keyLabel.text = "Location"
+            cell.valueLabel.text = place?.location
         case 2:
             cell.keyLabel.text = "Type"
+            cell.valueLabel.text = place?.type
         case 3:
             cell.keyLabel.text = "Visited"
             cell.valueLabel.text = place!.isVisited ? "Yes" : "No"

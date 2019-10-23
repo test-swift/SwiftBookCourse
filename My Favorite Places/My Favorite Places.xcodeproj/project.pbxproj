@@ -14,6 +14,8 @@
 		7870224B235B2237000E9731 /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7870224A235B2237000E9731 /* DetailTableViewController.swift */; };
 		7876F82D235E0F7100190F92 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7876F82C235E0F7100190F92 /* PageViewController.swift */; };
 		7876F82F235E0F9400190F92 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7876F82E235E0F9400190F92 /* ContentViewController.swift */; };
+		789B10D1235F7DB400470EC2 /* AboutIUsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789B10D0235F7DB400470EC2 /* AboutIUsTableViewController.swift */; };
+		789B10D3235F82A900470EC2 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789B10D2235F82A900470EC2 /* WebViewController.swift */; };
 		78A53A47235B65B400A67271 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A53A46235B65B400A67271 /* MapViewController.swift */; };
 		78A53A49235B847500A67271 /* NewPlaceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A53A48235B847500A67271 /* NewPlaceTableViewController.swift */; };
 		78DC41AD235AFD23002A584B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DC41AC235AFD23002A584B /* AppDelegate.swift */; };
@@ -33,6 +35,8 @@
 		7870224A235B2237000E9731 /* DetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
 		7876F82C235E0F7100190F92 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		7876F82E235E0F9400190F92 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		789B10D0235F7DB400470EC2 /* AboutIUsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutIUsTableViewController.swift; sourceTree = "<group>"; };
+		789B10D2235F82A900470EC2 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		78A53A46235B65B400A67271 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		78A53A48235B847500A67271 /* NewPlaceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlaceTableViewController.swift; sourceTree = "<group>"; };
 		78DC41A9235AFD23002A584B /* My Favorite Places.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Favorite Places.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +107,7 @@
 		78DC41AB235AFD23002A584B /* My Favorite Places */ = {
 			isa = PBXGroup;
 			children = (
+				789B10D2235F82A900470EC2 /* WebViewController.swift */,
 				78DC41AC235AFD23002A584B /* AppDelegate.swift */,
 				786E5DFF235C3DCF00B50088 /* CoreDataStack.swift */,
 				786E5E01235C3EC300B50088 /* Places.xcdatamodeld */,
@@ -111,6 +116,7 @@
 				78DC41B2235AFD23002A584B /* Main.storyboard */,
 				7876F831235E0FD200190F92 /* Page */,
 				78A53A48235B847500A67271 /* NewPlaceTableViewController.swift */,
+				789B10D0235F7DB400470EC2 /* AboutIUsTableViewController.swift */,
 				78A53A46235B65B400A67271 /* MapViewController.swift */,
 				783C3C32235B506300349860 /* RateViewController.swift */,
 				783C3C30235B4D0600349860 /* DetailVC */,
@@ -203,7 +209,9 @@
 				786E5E00235C3DD000B50088 /* CoreDataStack.swift in Sources */,
 				78DC41AF235AFD23002A584B /* SceneDelegate.swift in Sources */,
 				783C3C33235B506300349860 /* RateViewController.swift in Sources */,
+				789B10D1235F7DB400470EC2 /* AboutIUsTableViewController.swift in Sources */,
 				78DC41C3235AFE46002A584B /* MainTableViewCell.swift in Sources */,
+				789B10D3235F82A900470EC2 /* WebViewController.swift in Sources */,
 				786E5E03235C3EC300B50088 /* Places.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
